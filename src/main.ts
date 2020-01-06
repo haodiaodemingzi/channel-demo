@@ -1,22 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import "reflect-metadata";
-import "./registerServiceWorker";
-import { load } from "./lib/loader";
-
-import Counter from "./modules/Counter/index";
-
-
+import store from './store'
 
 Vue.config.productionTip = false
-const {
-    portal,
-    app,
-} = load({
-    modules: {
-        Counter,
-    },
-    main: App
-});
-Vue.prototype.portal = portal;
+
 new App().$mount()
+
+
+new Vue({
+    el: '#app',
+    store,
+    render: (h) => h(App),
+});
